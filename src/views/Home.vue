@@ -1,9 +1,8 @@
 <template>
   <div class="home">
+    <Navbar></Navbar>
     <div style="text-align: center;">
-      <img alt="Vue logo" src="../assets/logo.png">
     </div>
-
           <!-- Main Page -->
       <div class="container-fluid mt-5 shadow">
         <div class="row">
@@ -15,7 +14,7 @@
                         class="bi bi-basket3-fill"
                         style="font-size: 1.2rem; color: #0d6efd;"
                     ></i>
-                    <router-link to="/ListTabelProduct"> Product</router-link>
+                    <router-link to="/"> Product</router-link>
                     </a>
                 </li>
                 <li class="nav-item mt-3">
@@ -24,13 +23,13 @@
                         class="bi bi-file-earmark-plus-fill"
                         style="font-size: 1.2rem; color: #0d6efd;"
                     ></i>
-                    <router-link to="/AddForm"> Add Product</router-link>
+                    <router-link to="/addproduct"> Add Product</router-link>
                     </a>
                 </li>
                 </ul>
             </div>
             <div class="col-10 bg-primary border-radius p-5 cart-list ">
-                <h1 style="color: white; font-weight: bold;" class="text-center">
+                <!-- <h1 style="color: white; font-weight: bold;" class="text-center">
                   Product List
                 </h1>
                 <hr class="garis" />
@@ -52,7 +51,8 @@
                     :product="product"
                     ></DataProduct>
                   </tbody>
-                </table>
+                </table> -->
+              <TabelData></TabelData>
             </div>
         </div>
       </div>
@@ -61,20 +61,24 @@
 
 <script>
 // @ is an alias to /src
-import DataProduct from '../components/DataProduct'
+// import DataProduct from '../components/DataProduct'
+import TabelData from '../components/TabelData'
+import Navbar from '../components/Navbar'
 
 export default {
   name: 'Home',
   components: {
-    DataProduct
-  },
-  created () {
-    this.$store.dispatch('fetchProducts')
-  },
-  computed: {
-    products () {
-      return this.$store.state.products
-    }
+    // DataProduct,
+    TabelData,
+    Navbar
   }
+  // created () {
+  //   this.$store.dispatch('fetchProducts')
+  // },
+  // computed: {
+  //   products () {
+  //     return this.$store.state.products
+  //   }
+  // }
 }
 </script>

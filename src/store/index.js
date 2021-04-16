@@ -40,6 +40,41 @@ export default new Vuex.Store({
         .catch(err => {
           console.log(err)
         })
+    },
+    postProduct (context, payload) {
+      axios
+        .post('/products', payload, {
+          headers: {
+            access_token: localStorage.access_token
+          }
+        })
+        .then(({ data }) => {
+          console.log(`${data.name} sudah ditambahkan`)
+          context.dispatch('fetchProducts')
+          // balik lagi ke home
+          router.push('/')
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    deleteProduct (context, payload) {
+      console.log(payload.id, '<<<<< ID yang mau didelete')
+      axios
+        .delete(`/products/${payload.id}`, {
+          headers: {
+            access_token: localStorage.access_token
+          }
+        })
+        .then(({ data }) => {
+          console.log('Product berhasil didelete')
+          context.dispatch('fetchProducts')
+          // balik lagi ke home
+          router.push('/').catch(() => {})
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   },
   modules: {

@@ -1,14 +1,24 @@
 <template>
   <div id="app">
     <div id="nav" style="text-align: center;">
-      <router-link to="/login">Login</router-link> |
+      <a href="" @click.prevent="toLoginPage">Login</a> |
       <router-link to="/">Home</router-link> |
+      <router-link to="/addproduct">Add Product</router-link> |
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>
   </div>
 </template>
-
+<script>
+export default {
+  name: 'App',
+  methods: {
+    toLoginPage () {
+      this.$router.push('/login').catch(() => {})
+    }
+  }
+}
+</script>
 <style>
 #app {
   /* font-family: Avenir, Helvetica, Arial, sans-serif; */

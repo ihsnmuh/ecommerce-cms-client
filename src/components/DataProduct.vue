@@ -30,7 +30,7 @@
           />
         </svg>
       </button>
-      <button class="btn btn-danger">
+      <button class="btn btn-danger" @click="deleteData">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -51,7 +51,15 @@
 <script>
 export default {
   name: 'DataProduct',
-  props: ['product']
+  props: ['product'],
+  methods: {
+    deleteData () {
+      const payload = {
+        id: +this.product.id
+      }
+      this.$store.dispatch('deleteProduct', payload)
+    }
+  }
 }
 </script>
 
