@@ -7,11 +7,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    products: []
+    products: [],
+    product: {}
   },
   mutations: {
     FETCH_PRODUCTS (state, data) {
       state.products = data
+    },
+    FETCH_ONE_PRODUCTS (state, data) {
+      state.product = data
     }
   },
   actions: {
@@ -25,6 +29,21 @@ export default new Vuex.Store({
         .then(({ data }) => {
           console.log(data)
           context.commit('FETCH_PRODUCTS', data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    fetchOne (context, id) {
+      axios
+        .get(`/products/${id}`, {
+          headers: {
+            access_token: localStorage.access_token
+          }
+        })
+        .then(({ data }) => {
+          console.log(data)
+          context.commit('FETCH_ONE_PRODUCTS', data)
         })
         .catch(err => {
           console.log(err)

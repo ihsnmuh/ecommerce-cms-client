@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import AddForm from '../components/AddForm.vue'
 import NotFoundPage from '../views/NotFoundPage.vue'
+import Detail from '../views/Detail.vue'
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,11 @@ const routes = [
     path: '/addproduct',
     name: 'AddForm',
     component: AddForm
+  },
+  {
+    path: '/detail/:id',
+    name: 'Detail',
+    component: Detail
   },
   {
     path: '/about',
@@ -44,4 +50,14 @@ const router = new VueRouter({
   routes
 })
 
+// Navigation Guard Router Global
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'Login' && !localStorage.access_token) {
+    next({ name: 'Login' })
+  } else if (to.name === 'Login' && localStorage.access_token) {
+    next({ name: 'Home' })
+  } else {
+    next()
+  }
+})
 export default router

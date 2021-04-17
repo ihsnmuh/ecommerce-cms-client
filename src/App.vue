@@ -21,7 +21,7 @@ export default {
 </script>
 <style>
 #app {
-  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
+  font-family: "Nunito", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
@@ -38,5 +38,10 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.garis {
+  border: 2px solid white;
+  border-radius: 3px;
 }
 </style>

@@ -35,7 +35,12 @@ export default {
     DataProduct
   },
   created () {
-    this.$store.dispatch('fetchProducts')
+    this.fetchProducts()
+  },
+  methods: {
+    fetchProducts () {
+      this.$store.dispatch('fetchProducts')
+    }
   },
   computed: {
     products () {
