@@ -55,14 +55,57 @@ export default new Vuex.Store({
         .then(({ data }) => {
           localStorage.setItem('access_token', data.access_token)
           router.push('/')
+
+          // Sweetalert
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+
+          Toast.fire({
+            icon: 'success',
+            title: 'Login in successfully'
+          })
         })
         .catch(err => {
           console.log(err)
+
+          // Sweetalert
+          Swal.fire({
+            icon: 'error',
+            title: 'Please input correctly',
+            text: `${err.response.data.message}`
+          })
         })
     },
     logout (context) {
       localStorage.removeItem('access_token')
       router.push('/login')
+
+      // Sweetalert
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+
+      Toast.fire({
+        icon: 'success',
+        title: 'Logout in successfully'
+      })
     },
     postProduct (context, payload) {
       axios
@@ -76,9 +119,34 @@ export default new Vuex.Store({
           context.dispatch('fetchProducts')
           // balik lagi ke home
           router.push('/')
+
+          // Sweetalert
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+
+          Toast.fire({
+            icon: 'success',
+            title: 'Add Product is successfully'
+          })
         })
         .catch(err => {
           console.log(err)
+
+          // Sweetalert
+          Swal.fire({
+            icon: 'error',
+            title: 'Please input correctly',
+            text: `${err.response.data.message}`
+          })
         })
     },
     updateProduct (context) {
@@ -98,13 +166,38 @@ export default new Vuex.Store({
         })
         .then(({ data }) => {
           console.log(data)
-          console.log(`${data.name} sudah ditambahkan`)
+          console.log(`${data.name} sudah diUpdate`)
           context.dispatch('fetchProducts')
           // balik lagi ke home
           router.push('/')
+
+          // Sweetalert
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+
+          Toast.fire({
+            icon: 'success',
+            title: 'Update Product is successfully'
+          })
         })
         .catch(err => {
           console.log(err)
+
+          // Sweetalert
+          Swal.fire({
+            icon: 'error',
+            title: 'Please input correctly',
+            text: `${err.response.data.message}`
+          })
         })
     },
     deleteProduct (context, payload) {
@@ -120,9 +213,34 @@ export default new Vuex.Store({
           context.dispatch('fetchProducts')
           // balik lagi ke home
           router.push('/').catch(() => {})
+
+          // Sweetalert
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+
+          Toast.fire({
+            icon: 'success',
+            title: 'Delete Product is successfully'
+          })
         })
         .catch(err => {
           console.log(err)
+
+          // Sweetalert
+          Swal.fire({
+            icon: 'error',
+            title: 'Please input correctly',
+            text: `${err.response.data.message}`
+          })
         })
     }
   },
