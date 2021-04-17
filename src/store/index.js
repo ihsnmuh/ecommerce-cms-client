@@ -60,6 +60,10 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
+    logout (context) {
+      localStorage.removeItem('access_token')
+      router.push('/login')
+    },
     postProduct (context, payload) {
       axios
         .post('/products', payload, {
@@ -68,6 +72,32 @@ export default new Vuex.Store({
           }
         })
         .then(({ data }) => {
+          console.log(`${data.name} sudah ditambahkan`)
+          context.dispatch('fetchProducts')
+          // balik lagi ke home
+          router.push('/')
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    updateProduct (context) {
+      // console.log(this.state.product);
+      const dataBaru = {
+        id: this.state.product.id,
+        name: this.state.product.name,
+        image_url: this.state.product.image_url,
+        price: this.state.product.price,
+        stock: this.state.product.stock
+      }
+      axios
+        .put(`/products/${dataBaru.id}`, dataBaru, {
+          headers: {
+            access_token: localStorage.access_token
+          }
+        })
+        .then(({ data }) => {
+          console.log(data)
           console.log(`${data.name} sudah ditambahkan`)
           context.dispatch('fetchProducts')
           // balik lagi ke home

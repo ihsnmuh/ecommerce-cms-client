@@ -23,7 +23,7 @@
         </div>
         <div class="col-2"></div>
         <div class="col-8 text-end">
-          <button class="btn btn-light rounded">
+          <button class="btn btn-light rounded" @click="logout">
             Logout
           </button>
         </div>
@@ -34,7 +34,12 @@
 
 <script>
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  methods: {
+    logout () {
+      this.$store.dispatch('logout')
+    }
+  }
 }
 </script>
 <style>

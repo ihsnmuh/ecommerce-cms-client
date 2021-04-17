@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import AddForm from '../components/AddForm.vue'
+import EditForm from '../components/EditForm.vue'
 import NotFoundPage from '../views/NotFoundPage.vue'
 import Detail from '../views/Detail.vue'
 
@@ -28,6 +29,11 @@ const routes = [
     path: '/detail/:id',
     name: 'Detail',
     component: Detail
+  },
+  {
+    path: '/edit/:id',
+    name: 'EditForm',
+    component: EditForm
   },
   {
     path: '/about',
