@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <div id="nav" style="text-align: center;">
+    <!-- <div id="nav" style="text-align: center;">
       <a href="" @click.prevent="toLoginPage">Login</a> |
       <router-link to="/">Home</router-link> |
       <router-link to="/addproduct">Add Product</router-link> |
       <router-link to="/about">About</router-link>
-    </div>
+    </div> -->
     <router-view/>
   </div>
 </template>
